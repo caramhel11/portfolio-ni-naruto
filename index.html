@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Naruto Uzumaki — Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --o:   #f97316;
+      --og:  #c2410c;
+      --y:   #fbbf24;
+      --dk:  #090806;
+      --mid: #111009;
+      --srf: #1a1710;
+      --cr:  #fdf8ee;
+      --mu:  rgba(253,248,238,0.45);
+      --ln:  rgba(249,115,22,0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dk);
+      color: var(--cr);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-thumb { background: var(--o); }
+
+    /* ─── NAVBAR ─── */
+    .navbar {
+      position: fixed; top: 0; width: 100%;
+      z-index: 200;
+      padding: 1.2rem 2.5rem;
+      transition: all 0.4s ease;
+    }
+    .navbar.stuck {
+      background: rgba(9,8,6,0.96);
+      backdrop-filter: blur(18px);
+      padding: 0.75rem 2.5rem;
+      border-bottom: 1px solid var(--ln);
+    }
+    .nb-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.35rem;
+      letter-spacing: 0.12em;
+      color: var(--o);
+      text-decoration: none;
+    }
+    .nav-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mu) !important;
+      padding: 0.3rem 0.9rem !important;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--o) !important; }
+    .navbar-toggler {
+      border: 1px solid rgba(249,115,22,0.35);
+      padding: 0.3rem 0.55rem;
+    }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28249,115,22,0.85%29' stroke-linecap='round' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left {
+      background: var(--mid);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 5rem 4rem 5rem 5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      top: 0; right: -1px; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--o), transparent);
+    }
+    .hero-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--o);
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--o);
+    }
+    .hero-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4.5rem, 8vw, 7.5rem);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      color: var(--cr);
+      margin-bottom: 1.6rem;
+    }
+    .hero-name span { color: var(--o); display: block; }
+    .hero-bio {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: var(--mu);
+      max-width: 380px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-cta-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary-o {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: var(--o);
+      color: #fff;
+      border: none;
+      border-radius: 0;
+      padding: 0.75rem 1.8rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-primary-o:hover { background: var(--og); color:#fff; transform: translateY(-2px); }
+    .btn-ghost-o {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: transparent;
+      color: var(--o);
+      border: 1px solid rgba(249,115,22,0.5);
+      border-radius: 0;
+      padding: 0.75rem 1.8rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .btn-ghost-o:hover { border-color: var(--o); background: rgba(249,115,22,0.08); color: var(--o); }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: brightness(0.55) saturate(1.2);
+      animation: zoomIn 16s ease-out forwards;
+    }
+    @keyframes zoomIn {
+      from { transform: scale(1.08); }
+      to   { transform: scale(1.0); }
+    }
+    .hero-right-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, var(--mid) 0%, transparent 40%),
+                  linear-gradient(to top, rgba(9,8,6,0.7) 0%, transparent 50%);
+    }
+    /* hero number */
+    .hero-index {
+      position: absolute;
+      bottom: 3.5rem; right: 3rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 10rem;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(249,115,22,0.12);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    /* scroll indicator */
+    .scroll-line {
+      position: absolute;
+      bottom: 2.5rem; left: 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 3;
+    }
+    .scroll-line span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.4em;
+      color: rgba(253,248,238,0.3);
+      writing-mode: vertical-rl;
+    }
+    .scroll-line::after {
+      content: '';
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--o), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity: 0.35; transform: scaleY(1); }
+      50%      { opacity: 1; transform: scaleY(1.1); }
+    }
+
+    /* mobile hero */
+    @media(max-width:767px) {
+      #hero {
+        grid-template-columns: 1fr;
+        grid-template-rows: 40vh 1fr;
+        height: auto;
+        min-height: 100vh;
+      }
+      .hero-left { order: 2; padding: 3rem 1.8rem 4rem; }
+      .hero-left::after { display: none; }
+      .hero-right { order: 1; height: 40vh; }
+      .hero-index { display: none; }
+      .scroll-line { display: none; }
+    }
+
+    /* ─── SHARED ─── */
+    section { padding: 6rem 0; }
+
+    .eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--o);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.9rem;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 20px; height: 1px;
+      background: var(--o);
+      flex-shrink: 0;
+    }
+    .h2-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      color: var(--cr);
+      margin-bottom: 2rem;
+    }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--srf); }
+
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      filter: saturate(0.85) contrast(1.05);
+    }
+    .about-photo-wrap { position: relative; overflow: hidden; }
+    .about-photo-wrap::before {
+      content: '';
+      position: absolute;
+      top: 1.5rem; left: 1.5rem; right: -1.5rem; bottom: -1.5rem;
+      border: 1px solid var(--ln);
+      z-index: -1;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .info-cell {
+      padding: 1rem 1rem 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .info-cell:nth-child(even) { padding-left: 1rem; border-left: 1px solid rgba(255,255,255,0.05); }
+    .info-cell:last-child, .info-cell:nth-last-child(2) { border-bottom: none; }
+    .info-key {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--o);
+      margin-bottom: 0.3rem;
+    }
+    .info-val {
+      font-size: 1rem;
+      color: rgba(253,248,238,0.75);
+      line-height: 1.4;
+    }
+
+    .about-quote {
+      font-style: italic;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: var(--y);
+      border-left: 2px solid var(--o);
+      padding: 0.3rem 0 0.3rem 1.2rem;
+      margin: 2rem 0 0;
+    }
+    .about-quote cite {
+      display: block;
+      font-style: normal;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: var(--mu);
+      margin-top: 0.5rem;
+    }
+
+    /* ─── SKILLS ─── */
+    #skills { background: var(--dk); }
+
+    .skill-bar-wrap { margin-bottom: 1.4rem; }
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.4rem;
+    }
+    .skill-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(253,248,238,0.6);
+    }
+    .skill-score {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      color: var(--o);
+      letter-spacing: 0.05em;
+    }
+    .skill-track {
+      height: 3px;
+      background: rgba(255,255,255,0.06);
+      position: relative;
+    }
+    .skill-fill {
+      height: 100%;
+      background: linear-gradient(to right, var(--o), var(--y));
+      width: 0;
+      transition: width 2s cubic-bezier(0.22,1,0.36,1);
+    }
+    .skill-fill.go { width: var(--w); }
+
+    /* jutsu tags */
+    .jutsu-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+    .jutsu-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--o);
+      border: 1px solid rgba(249,115,22,0.3);
+      padding: 0.35rem 0.85rem;
+      background: rgba(249,115,22,0.06);
+      transition: all 0.2s;
+    }
+    .jutsu-tag:hover {
+      background: rgba(249,115,22,0.14);
+      border-color: var(--o);
+    }
+
+    /* ─── FORMS / EXPERIENCE ─── */
+    #forms { background: var(--srf); }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      align-items: start;
+    }
+    .form-row:first-of-type { padding-top: 0; }
+    .form-row:last-of-type { border-bottom: none; }
+    .form-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(249,115,22,0.35);
+      padding-top: 0.1rem;
+    }
+    .form-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.04em;
+      color: var(--cr);
+      margin-bottom: 0.3rem;
+    }
+    .form-level {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border: 1px solid;
+    }
+    .form-desc {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--mu);
+    }
+
+    /* ─── ACHIEVEMENTS / CARDS ─── */
+    #achievements { background: var(--dk); }
+
+    .achiev-card {
+      background: var(--srf);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 2rem;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .achiev-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+    }
+    .achiev-card:hover {
+      border-color: rgba(249,115,22,0.3);
+      transform: translateY(-4px);
+    }
+    .achiev-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .achiev-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.05em;
+      color: var(--cr);
+      margin-bottom: 0.5rem;
+    }
+    .achiev-desc {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--mu);
+    }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--srf); }
+
+    .contact-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .c-input {
+      background: rgba(255,255,255,0.03) !important;
+      border: 1px solid rgba(255,255,255,0.08) !important;
+      border-radius: 0 !important;
+      color: var(--cr) !important;
+      font-family: 'Crimson Pro', serif !important;
+      font-size: 1.05rem !important;
+      padding: 0.85rem 1.1rem !important;
+      transition: border-color 0.2s !important;
+    }
+    .c-input:focus {
+      border-color: rgba(249,115,22,0.5) !important;
+      box-shadow: none !important;
+      background: rgba(249,115,22,0.03) !important;
+      outline: none !important;
+    }
+    .c-input::placeholder { color: rgba(253,248,238,0.22) !important; }
+    .c-input option { background: var(--srf); }
+    .c-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mu);
+      margin-bottom: 0.35rem;
+      display: block;
+    }
+
+    /* ─── MODAL ─── */
+    .modal-content {
+      background: var(--srf);
+      border: 1px solid rgba(249,115,22,0.22);
+      border-radius: 0;
+      color: var(--cr);
+    }
+    .modal-header { border-bottom: 1px solid rgba(249,115,22,0.12); }
+    .modal-footer { border-top:  1px solid rgba(249,115,22,0.12); }
+    .modal-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      color: var(--o);
+    }
+    .btn-close { filter: invert(1); opacity: 0.45; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dk);
+      border-top: 1px solid rgba(249,115,22,0.12);
+      padding: 3rem 0 2rem;
+    }
+    .f-brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+      color: var(--o);
+    }
+    .f-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      color: var(--mu);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: color 0.2s;
+    }
+    .f-link:hover { color: var(--o); }
+    .f-head {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--o);
+      margin-bottom: 1rem;
+    }
+    .f-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      color: rgba(253,248,238,0.18);
+    }
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px; height: 38px;
+      border: 1px solid rgba(249,115,22,0.25);
+      color: var(--mu);
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      margin-right: 0.5rem;
+    }
+    .social-link:hover { border-color: var(--o); color: var(--o); }
+
+    /* ─── REVEAL ─── */
+    .r { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .r.in { opacity: 1; transform: none; }
+    .rl { opacity: 0; transform: translateX(-30px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .rl.in { opacity: 1; transform: none; }
+    .r2 { transition-delay: 0.1s; }
+    .r3 { transition-delay: 0.2s; }
+    .r4 { transition-delay: 0.3s; }
+
+    @media(max-width:767px) {
+      section { padding: 4rem 0; }
+      .info-grid { grid-template-columns: 1fr; }
+      .info-cell:nth-child(even) { padding-left: 0; border-left: none; }
+      .form-row { grid-template-columns: 1fr; gap: 0.5rem; }
+      .form-num { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar navbar-expand-lg" id="mainNav">
+  <div class="container-fluid px-4">
+    <a class="nb-name" href="#">UZUMAKI NARUTO</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav gap-1 align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#forms">Forms</a></li>
+        <li class="nav-item"><a class="nav-link" href="#achievements">Achievements</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item ms-2">
+          <a href="#" class="btn-primary-o" data-bs-toggle="modal" data-bs-target="#hireModal">Hire Me</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <!-- LEFT -->
+  <div class="hero-left">
+    <h1 class="hero-name">
+      NARUTO<span>UZUMAKI</span>
+    </h1>
+    <div class="hero-cta-row">
+      <a href="#about" class="btn-primary-o">View Profile</a>
+      <a href="#contact" class="btn-ghost-o">Send a Message</a>
+    </div>
+  </div>
+  <!-- RIGHT -->
+  <div class="hero-right">
+    <img src="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2025/08/naruto-new-anime-2025-announcement.jpg?w=1600&h=900&fit=crop"
+         alt="Naruto Uzumaki">
+    <div class="hero-right-overlay"></div>
+  </div>
+  <div class="hero-index">07</div>
+  <div class="scroll-line"><span>Scroll</span></div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="container">
+    <div class="row g-5 align-items-start">
+
+      <div class="col-lg-4 rl">
+        <div class="about-photo-wrap">
+          <img class="about-photo"
+               src="https://is.zobj.net/image-server/v1/images?r=H3GmK5wI9PloJhywp6zQXdzUjuhcslLGzlMzVOS9J44bd6LR3_iPdcflob1sYbs2ICmysurGCGpuCSBEYeb2uI02VzFfS5wX8iKIJ_VSrq-zgQDOvuBECod8QkpZJ7s3fN3v_pyyxPp9rvNCAlJ4KQzSP7wIT6huoTMopDNvWPifFVcEn7WQ0bQHQmid_8CW1q4TPdnYUHMdQwlcWQ2eMcs6ruS1T-yZzP_zHbp8vr3_DZZWGGr5RQA2OE4"
+               alt="Naruto portrait"
+               style="filter:sepia(0.2) saturate(1.4) hue-rotate(-8deg);">
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="r">
+          <div class="eyebrow">About Me</div>
+          <h2 class="h2-title">Uzumaki Naruto</h2>
+        </div>
+
+        <div class="info-grid r r2">
+          <div class="info-cell">
+            <div class="info-key">Full Name</div>
+            <div class="info-val">Uzumaki Naruto</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-key">Date of Birth</div>
+            <div class="info-val">October 10th</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-key">Village</div>
+            <div class="info-val">Hidden Leaf Village</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-key">Current Rank</div>
+            <div class="info-val">Seventh Hokage</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-key">Clan</div>
+            <div class="info-val">Uzumaki Clan</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-key">Affiliation</div>
+            <div class="info-val">Konoha · Allied Shinobi Forces</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-key">Jinchūriki of</div>
+            <div class="info-val">Kurama — Nine-Tailed Fox</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-key">Nature Types</div>
+            <div class="info-val">Wind · Fire · Water · Earth · Lightning</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-key">Mentors</div>
+            <div class="info-val">Kakashi Hatake · Jiraiya · Iruka Umino</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-key">Team</div>
+            <div class="info-val">Team 7 — Kakashi, Sakura, Sasuke</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SKILLS ══ -->
+<section id="skills">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-6">
+        <div class="r">
+          <div class="eyebrow">Combat Stats</div>
+          <h2 class="h2-title">Skills &amp; Abilities</h2>
+        </div>
+
+        <div class="r r2">
+          <div class="skill-bar-wrap">
+            <div class="skill-header">
+              <span class="skill-name">Ninjutsu</span>
+              <span class="skill-score">S+</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" style="--w:98%"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-header">
+              <span class="skill-name">Taijutsu</span>
+              <span class="skill-score">S</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" style="--w:88%"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-header">
+              <span class="skill-name">Chakra Reserves</span>
+              <span class="skill-score">∞</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" style="--w:100%"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-header">
+              <span class="skill-name">Speed</span>
+              <span class="skill-score">S+</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" style="--w:96%"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-header">
+              <span class="skill-name">Senjutsu</span>
+              <span class="skill-score">S</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" style="--w:92%"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-header">
+              <span class="skill-name">Willpower</span>
+              <span class="skill-score">∞</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" style="--w:100%"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-header">
+              <span class="skill-name">Leadership</span>
+              <span class="skill-score">S+</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" style="--w:97%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="r">
+          <div class="eyebrow">Signature Jutsu</div>
+          <h2 class="h2-title">Techniques</h2>
+        </div>
+        <div class="jutsu-grid r r2">
+          <span class="jutsu-tag">Rasengan</span>
+          <span class="jutsu-tag">Shadow Clone Jutsu</span>
+          <span class="jutsu-tag">Rasenshuriken</span>
+          <span class="jutsu-tag">Sage Art: Massive Rasengan</span>
+          <span class="jutsu-tag">Bijuudama</span>
+          <span class="jutsu-tag">Six Paths: Ultra-Big Ball Rasenshuriken</span>
+          <span class="jutsu-tag">Summoning Jutsu (Toads)</span>
+          <span class="jutsu-tag">Kurama Avatar</span>
+          <span class="jutsu-tag">Truth-Seeking Balls</span>
+          <span class="jutsu-tag">Lava Release Rasenshuriken</span>
+          <span class="jutsu-tag">Wind Release: Rasen Tarengan</span>
+          <span class="jutsu-tag">Baryon Mode</span>
+        </div>
+
+        <div class="mt-4 r r3">
+          <div class="eyebrow">Key Relationships</div>
+          <div class="mt-3" style="display:flex; flex-direction:column; gap:0.9rem;">
+            <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:0.9rem;">
+              <div>
+                <div style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;color:var(--o);">Best Friend / Rival</div>
+                <div style="font-size:1rem; color:rgba(253,248,238,0.75);">Sasuke Uchiha</div>
+              </div>
+              <div style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--mu);text-align:right;">Brother in Arms</div>
+            </div>
+            <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:0.9rem;">
+              <div>
+                <div style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;color:var(--o);">Mentor</div>
+                <div style="font-size:1rem; color:rgba(253,248,238,0.75);">Jiraiya (Pervy Sage)</div>
+              </div>
+              <div style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--mu);text-align:right;">Greatest Influence</div>
+            </div>
+            <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:0.9rem;">
+              <div>
+                <div style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;color:var(--o);">Bond Partner</div>
+                <div style="font-size:1rem; color:rgba(253,248,238,0.75);">Kurama (Nine-Tails)</div>
+              </div>
+              <div style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--mu);text-align:right;">Sealed Within</div>
+            </div>
+            <div style="display:flex; justify-content:space-between;">
+              <div>
+                <div style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;color:var(--o);">Wife</div>
+                <div style="font-size:1rem; color:rgba(253,248,238,0.75);">Hinata Hyūga</div>
+              </div>
+              <div style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--mu);text-align:right;">Always Believed in Him</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FORMS ══ -->
+<section id="forms">
+  <div class="container">
+    <div class="row g-5 align-items-start">
+      <div class="col-lg-4 r">
+        <div class="eyebrow">Transformations</div>
+        <h2 class="h2-title">Forms &amp;<br>Power Levels</h2>
+        <p style="font-size:1rem;color:var(--mu);line-height:1.75;margin-top:1rem;">
+          Each form represents a new chapter in Naruto's growth — from a boy who couldn't clone himself to a warrior capable of rivalling gods.
+        </p>
+      </div>
+
+      <div class="col-lg-8 r r2">
+        <div class="form-row">
+          <div class="form-num">01</div>
+          <div>
+            <div class="form-name">Base Naruto</div>
+            <span class="form-level" style="color:var(--o);border-color:rgba(249,115,22,0.35);">Genin → Chunin → Jonin</span>
+            <p class="form-desc">Raw talent hidden behind a knucklehead attitude. Mastered the Shadow Clone Jutsu and Rasengan where most give up. Foundation of everything that follows.</p>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-num">02</div>
+          <div>
+            <div class="form-name">Sage Mode</div>
+            <span class="form-level" style="color:#4ade80;border-color:rgba(74,222,128,0.3);">Mount Myōboku Training</span>
+            <p class="form-desc">Trained by the toads of Mount Myōboku, Naruto learns to absorb natural energy. Sage Mode amplifies his speed, strength, and perception beyond normal limits.</p>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-num">03</div>
+          <div>
+            <div class="form-name">Kurama Chakra Mode</div>
+            <span class="form-level" style="color:var(--y);border-color:rgba(251,191,36,0.3);">Partnership with Kurama</span>
+            <p class="form-desc">After breaking through hatred and forging a bond with the Nine-Tailed Fox, Naruto wields Kurama's golden chakra freely — clad in a radiant shroud.</p>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-num">04</div>
+          <div>
+            <div class="form-name">Tailed Beast Mode</div>
+            <span class="form-level" style="color:#fca5a5;border-color:rgba(252,165,165,0.3);">Full Bijuu Manifestation</span>
+            <p class="form-desc">Naruto and Kurama become one — manifesting as a colossal Nine-Tailed Fox. A single Bijuudama reshapes the landscape. Fought toe-to-toe with the Ten-Tails.</p>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-num">05</div>
+          <div>
+            <div class="form-name">Six Paths Sage Mode</div>
+            <span class="form-level" style="color:#c7d2fe;border-color:rgba(199,210,254,0.3);">Granted by Hagoromo Ōtsutsuki</span>
+            <p class="form-desc">The Sage of Six Paths entrusts Naruto with divine chakra. Truth-Seeking Balls orbit him. He can fly. He saved the world in this form — twice.</p>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-num">06</div>
+          <div>
+            <div class="form-name">Baryon Mode</div>
+            <span class="form-level" style="color:#fca5a5;border-color:rgba(252,165,165,0.3);">Final Form · Life-Burning</span>
+            <p class="form-desc">The absolute limit. Naruto and Kurama's chakra fuse like nuclear matter — consuming both their lives. Used to defeat Isshiki Ōtsutsuki. The price: Kurama.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ACHIEVEMENTS ══ -->
+<section id="achievements">
+  <div class="container">
+    <div class="r text-center mb-5">
+      <div class="eyebrow justify-content-center">Career Highlights</div>
+      <h2 class="h2-title">Achievements</h2>
+    </div>
+    <div class="row g-4">
+
+      <div class="col-md-6 col-lg-4 r">
+        <div class="achiev-card">
+          <div class="achiev-card-top" style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--o),var(--y))"></div>
+          <span class="achiev-icon">🏯</span>
+          <div class="achiev-title">Seventh Hokage</div>
+          <p class="achiev-desc">Fulfilled the dream he declared as a small, lonely boy. Leader and protector of the Hidden Leaf Village.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 r r2">
+        <div class="achiev-card">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,#4ade80,#16a34a)"></div>
+          <span class="achiev-icon">🌍</span>
+          <div class="achiev-title">Saved the Shinobi World</div>
+          <p class="achiev-desc">Defeated Kaguya Ōtsutsuki alongside Sasuke. Ended the Fourth Great Ninja War. Liberated all nations from the Infinite Tsukuyomi.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 r r3">
+        <div class="achiev-card">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,#818cf8,#c7d2fe)"></div>
+          <span class="achiev-icon">🦊</span>
+          <div class="achiev-title">Befriended Kurama</div>
+          <p class="achiev-desc">Turned a curse into a partnership. The first Jinchūriki in history to earn the full trust and cooperation of a Tailed Beast.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 r">
+        <div class="achiev-card">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,#f59e0b,var(--o))"></div>
+          <span class="achiev-icon">🤝</span>
+          <div class="achiev-title">Reformed Pain</div>
+          <p class="achiev-desc">Defeated Nagato in battle — then talked him into using his last life force to resurrect everyone he killed. Changed an enemy with words alone.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 r r2">
+        <div class="achiev-card">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,#dc2626,var(--o))"></div>
+          <span class="achiev-icon">⚡</span>
+          <div class="achiev-title">Defeated Isshiki Ōtsutsuki</div>
+          <p class="achiev-desc">Activated Baryon Mode — sacrificing Kurama — to overpower a god-tier threat that no one else could stop. Saved the world once more.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 r r3">
+        <div class="achiev-card">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--y),#fde68a)"></div>
+          <span class="achiev-icon">💛</span>
+          <div class="achiev-title">Hero of the Hidden Leaf</div>
+          <p class="achiev-desc">From village outcast to its greatest hero. Every person who once feared him now walks proudly in the world he protected.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="container">
+    <div class="r text-center mb-5">
+      <div class="eyebrow justify-content-center">Get in Touch</div>
+      <h2 class="h2-title">Contact</h2>
+      <p style="font-size:1.05rem;color:var(--mu);max-width:440px;margin:0 auto;line-height:1.7;">
+        Mission requests, alliance proposals, or ramen recommendations — send it through.
+      </p>
+    </div>
+    <div class="contact-inner r r2">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="c-label">Your Name</label>
+          <input type="text" class="form-control c-input" placeholder="e.g. Rock Lee">
+        </div>
+        <div class="col-md-6">
+          <label class="c-label">Your Village</label>
+          <select class="form-select c-input">
+            <option>Hidden Leaf</option>
+            <option>Hidden Sand</option>
+            <option>Hidden Mist</option>
+            <option>Hidden Cloud</option>
+            <option>Hidden Stone</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label class="c-label">Subject</label>
+          <input type="text" class="form-control c-input" placeholder="e.g. Alliance Request">
+        </div>
+        <div class="col-12">
+          <label class="c-label">Message</label>
+          <textarea class="form-control c-input" rows="4" placeholder="Speak your mind, dattebayo."></textarea>
+        </div>
+        <div class="col-12 text-center pt-2">
+          <button class="btn-primary-o" data-bs-toggle="modal" data-bs-target="#hireModal">
+            Send Message &nbsp;<i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MODAL ══ -->
+<div class="modal fade" id="hireModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Message Received — Dattebayo!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p style="font-size:1rem;color:var(--mu);line-height:1.75;margin-bottom:1.2rem;">
+          The Seventh Hokage will respond shortly. No request is too big — after all, this is the ninja who never gives up.
+        </p>
+        <blockquote style="font-style:italic;font-size:1.05rem;color:var(--y);border-left:2px solid var(--o);padding-left:1rem;margin:0;">
+          "If you don't like your destiny, don't accept it. Have the courage to change it."
+          <cite style="display:block;font-style:normal;font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;color:var(--mu);margin-top:0.5rem;">— Naruto Uzumaki</cite>
+        </blockquote>
+      </div>
+      <div class="modal-footer justify-content-end gap-2">
+        <button class="btn-ghost-o" data-bs-dismiss="modal">Close</button>
+        <button class="btn-primary-o" data-bs-dismiss="modal">Believe It!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="container">
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-4">
+        <div class="f-brand">NARUTO UZUMAKI</div>
+        <p style="font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.12em;color:var(--mu);margin-top:0.6rem;line-height:1.9;">
+          Seventh Hokage · Hidden Leaf Village<br>
+          Jinchūriki of Kurama · Uzumaki Clan
+        </p>
+        <div class="mt-3">
+          <a href="#" class="social-link"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="f-head">Navigate</div>
+        <a href="#about"        class="f-link">About</a>
+        <a href="#skills"       class="f-link">Skills</a>
+        <a href="#forms"        class="f-link">Forms</a>
+        <a href="#achievements" class="f-link">Achievements</a>
+        <a href="#contact"      class="f-link">Contact</a>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="f-head">Forms</div>
+        <a href="#forms" class="f-link">Base</a>
+        <a href="#forms" class="f-link">Sage Mode</a>
+        <a href="#forms" class="f-link">Kurama Mode</a>
+        <a href="#forms" class="f-link">Tailed Beast Mode</a>
+        <a href="#forms" class="f-link">Baryon Mode</a>
+      </div>
+      <div class="col-lg-4">
+        <div class="f-head">Philosophy</div>
+        <blockquote style="border-left:1px solid rgba(249,115,22,0.3);padding-left:1rem;margin:0;">
+          <p style="font-style:italic;font-size:1rem;color:var(--mu);line-height:1.75;margin:0;">
+            "Hard work is worthless for those that don't believe in themselves."
+          </p>
+        </blockquote>
+      </div>
+    </div>
+    <div class="mt-4 pt-3" style="border-top:1px solid rgba(255,255,255,0.05);">
+      <p class="f-copy text-center">© 2026 Naruto Uzumaki — Fan Portfolio Tribute</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Navbar
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('stuck', window.scrollY > 60);
+  });
+
+  // Scroll reveal + skill bars
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      e.target.querySelectorAll('.skill-fill').forEach(b => b.classList.add('go'));
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.r, .rl').forEach(el => io.observe(el));
+
+  // Also fire bars when skills section enters
+  const skillObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) document.querySelectorAll('.skill-fill').forEach(b => b.classList.add('go'));
+    });
+  }, { threshold: 0.15 });
+  const sk = document.getElementById('skills');
+  if (sk) skillObs.observe(sk);
+
+  document.querySelectorAll('form').forEach(f => f.addEventListener('submit', e => e.preventDefault()));
+</script>
+</body>
+</html>
